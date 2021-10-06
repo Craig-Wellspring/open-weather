@@ -1,6 +1,13 @@
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 @import 'globals';
+@import 'component-styles';
 
 body {
-  background-color: $favColor !important;
+  background-color: $bgColor !important;
+  display: flex;
+  justify-content: center;
+}
+
+.App {
+  text-align: center;
 }

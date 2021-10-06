@@ -1,0 +1,17 @@
+@import '../globals/';
+
+#weather-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: pink;
+}
+
+.weather-card {
+  background-color: $cardBGcolor;
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 4px;
+}
