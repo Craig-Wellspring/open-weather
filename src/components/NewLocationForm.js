@@ -1,7 +1,9 @@
 import React from 'react';
+// import WeatherCard from './WeatherCard';
 
 function submitButtonClick() {
   console.warn('Submit clicked');
+  // document.getElementById('weather-card-container').appendChild(<WeatherCard locationName="test" />);
 }
 
 export default function NewLocationForm() {

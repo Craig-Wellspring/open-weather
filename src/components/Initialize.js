@@ -1,5 +1,5 @@
 import React from 'react';
-import NewLocationForm from '../components/NewLocationForm';
+import NewLocationForm from './NewLocationForm';
 // , { useState }
 
 function Initialize() {
