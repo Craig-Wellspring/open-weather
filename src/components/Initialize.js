@@ -1,14 +1,15 @@
 import React from 'react';
+import Header from './Header';
 import NewLocationForm from './NewLocationForm';
-// , { useState }
+import WeatherCardContainer from './WeatherCardContainer';
 
 function Initialize() {
   return (
-    <div className="App">
-      <h2>Weather Forecast</h2>
-      <div id="weather-card-container" />
+    <>
+      <Header text="Weather Forecast" />
+      <WeatherCardContainer />
       <NewLocationForm />
-    </div>
+    </>
   );
 }
 
