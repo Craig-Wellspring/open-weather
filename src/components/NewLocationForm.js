@@ -1,16 +1,18 @@
-import React from 'react';
-// import WeatherCard from './WeatherCard';
-
-function submitButtonClick() {
-  console.warn('Submit clicked');
-  // document.getElementById('weather-card-container').appendChild(<WeatherCard locationName="test" />);
-}
+import React, { useRef } from 'react';
 
 export default function NewLocationForm() {
+  const inputRef = useRef();
+
+  function submitButtonClick() {
+    const locationInput = inputRef.current.value;
+    console.warn(locationInput);
+    inputRef.current.value = null;
+  }
+
   return (
     <div id="new-location-form">
       <div>Track New Location</div>
-      <input type="text" />
+      <input type="text" ref={inputRef} />
       <button
         type="button"
         id="submit-button"
