@@ -1,26 +1,35 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
+import { createTracker } from '../api/data/weatherTrackers';
 
 export default function NewLocationForm() {
-  const inputRef = useRef();
+  const [inputText, setInputText] = useState('');
 
-  function submitButtonClick() {
-    const locationInput = inputRef.current.value;
-    console.warn(locationInput);
-    inputRef.current.value = null;
+  function inputChanged(e) {
+    setInputText((currentText) => ({
+      ...currentText,
+      [e.target.name]: e.target.value,
+    }));
+  }
+
+  function submitButtonClick(e) {
+    e.preventDefault();
+
+    createTracker({
+      locationName: inputText,
+      temp: 69,
+      weatherDesc: 'Overcast',
+    });
   }
 
   return (
-    <div id="new-location-form">
+    <form onSubmit={submitButtonClick} id="new-location-form">
       <div>Track New Location</div>
-      <input type="text" ref={inputRef} />
-      <button
-        type="button"
-        id="submit-button"
-        className="btn btn-info"
-        onClick={submitButtonClick}
-      >
+      <label htmlFor="location">
+        <input name="location" id="location" onChange={inputChanged} />
+      </label>
+      <button type="submit" id="submit-button" className="btn btn-info">
         Submit
       </button>
-    </div>
+    </form>
   );
 }

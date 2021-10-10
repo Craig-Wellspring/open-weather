@@ -1,39 +1,37 @@
-// import React from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getTrackers } from '../api/data/weatherTrackers';
 import Header from './Header';
 import NewLocationForm from './NewLocationForm';
 import WeatherCardContainer from './WeatherCardContainer';
 
-const sampleData1 = {
-  location1: {
-    locationName: 'Nashville',
-    temp: 55,
-    weatherDesc: 'Cloudy',
-  },
-  location2: {
-    locationName: 'St. Louis',
-    temp: 75,
-    weatherDesc: 'Sunny',
-  },
-};
-
-// const sampleData2 = {
+// const sampleData1 = {
 //   location1: {
-//     locationName: 'Chicago',
-//     temp: 40,
-//     weatherDesc: 'Rainy',
+//     locationName: 'Nashville',
+//     temp: 55,
+//     weatherDesc: 'Cloudy',
+//   },
+//   location2: {
+//     locationName: 'St. Louis',
+//     temp: 75,
+//     weatherDesc: 'Sunny',
 //   },
 // };
 
 function Initialize() {
   const [trackerState, setTrackerState] = useState({});
-  setTrackerState((currentState) => ({ ...currentState, sampleData1 }));
-  // console.warn(setTrackerState);
+  useEffect(
+    () => setTrackerState((currentState) => {
+      getTrackers().then((trackerList) => ({
+        ...currentState,
+        ...trackerList,
+      }));
+    }),
+    [],
+  );
 
   return (
     <>
       <Header text="Weather Forecast" />
-      {/* <WeatherCardContainer state={sampleData} /> */}
       <WeatherCardContainer state={trackerState} />
       <NewLocationForm />
     </>
