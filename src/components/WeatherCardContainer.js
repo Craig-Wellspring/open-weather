@@ -13,5 +13,9 @@ export default function WeatherCardContainer({ state = {} }) {
 }
 
 WeatherCardContainer.propTypes = {
-  state: PropTypes.shape().isRequired,
+  state: PropTypes.shape(),
+};
+
+WeatherCardContainer.defaultProps = {
+  state: {},
 };

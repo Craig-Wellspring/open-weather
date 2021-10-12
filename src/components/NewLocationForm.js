@@ -15,9 +15,7 @@ export default function NewLocationForm() {
     e.preventDefault();
 
     createTracker({
-      locationName: inputText,
-      temp: 69,
-      weatherDesc: 'Overcast',
+      ...inputText,
     });
   }
 

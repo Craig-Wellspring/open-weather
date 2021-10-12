@@ -1,12 +1,12 @@
 import axios from 'axios';
-import firebaseConfig from '../apiKeys';
+import { firebaseConfig } from '../apiKeys';
 
 const dbURL = firebaseConfig.databaseURL;
 
 async function getTrackers() {
   const trackerList = await axios.get(`${dbURL}/.json`);
 
-  return Object.values(trackerList.data);
+  return trackerList.data ? Object.values(trackerList.data) : {};
 }
 
 async function createTracker(obj) {
