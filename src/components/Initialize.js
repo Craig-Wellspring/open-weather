@@ -4,7 +4,7 @@ import Header from './Header';
 import NewLocationForm from './NewLocationForm';
 import WeatherCardContainer from './WeatherCardContainer';
 
-function Initialize() {
+export default function Initialize() {
   const [trackerState, setTrackerState] = useState({});
 
   useEffect(() => {
@@ -17,9 +17,7 @@ function Initialize() {
     <>
       <Header text="Weather Forecast" />
       <WeatherCardContainer state={trackerState} />
-      <NewLocationForm />
+      <NewLocationForm setTrackerState={setTrackerState} />
     </>
   );
 }
-
-export default Initialize;

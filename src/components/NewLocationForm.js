@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { createTracker } from '../api/data/weatherTrackers';
+import PropTypes from 'prop-types';
+import { createTracker, getTrackers } from '../api/data/weatherTrackers';
 
-export default function NewLocationForm() {
+export default function NewLocationForm({ setTrackerState }) {
   const [inputText, setInputText] = useState('');
 
   function inputChanged(e) {
@@ -16,7 +17,7 @@ export default function NewLocationForm() {
 
     createTracker({
       ...inputText,
-    });
+    }).then(getTrackers().then(setTrackerState));
   }
 
   return (
@@ -31,3 +32,7 @@ export default function NewLocationForm() {
     </form>
   );
 }
+
+NewLocationForm.propTypes = {
+  setTrackerState: PropTypes.func.isRequired,
+};
