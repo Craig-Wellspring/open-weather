@@ -16,6 +16,7 @@ export default function WeatherCard({ meta }) {
     getWeatherData(meta.location).then((weatherData) => {
       const refinedData = weatherData[3][0];
       setWeatherState({
+        locationName: weatherData[4].name,
         temp: ((refinedData.main.temp - 273.15) * 1.8 + 32).toFixed(),
         weatherDesc: refinedData.weather[0].description,
         weatherIcon: refinedData.weather[0].icon,
@@ -30,7 +31,7 @@ export default function WeatherCard({ meta }) {
         src={`http://openweathermap.org/img/wn/${weatherState.weatherIcon}@2x.png`}
         alt={weatherState.weatherAlt}
       />
-      <div>{meta.location}</div>
+      <div>{weatherState.locationName}</div>
       <br />
       <h2>{weatherState.temp}°</h2>
       <div>{weatherState.weatherDesc}</div>

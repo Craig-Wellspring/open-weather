@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { createTracker, getTrackers } from '../api/data/weatherTrackers';
+import getWeatherData from '../api/data/weatherData';
+import { createTracker } from '../api/data/weatherTrackers';
 
 export default function NewLocationForm({ setTrackerState }) {
   const [inputText, setInputText] = useState('');
@@ -15,9 +16,16 @@ export default function NewLocationForm({ setTrackerState }) {
   function submitButtonClick(e) {
     e.preventDefault();
 
-    createTracker({
-      ...inputText,
-    }).then(getTrackers().then(setTrackerState));
+    getWeatherData(inputText.location)
+      .then(() => {
+        createTracker({
+          ...inputText,
+        }).then(setTrackerState);
+      })
+      .catch(() => {
+        // eslint-disable-next-line no-alert
+        window.alert('Could not find weather for location provided.');
+      });
   }
 
   return (
